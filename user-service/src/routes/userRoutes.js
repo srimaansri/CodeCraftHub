@@ -1,15 +1,23 @@
-const express = require('express');
-const { registerUser, loginUser, updateUsername } = require('../controllers/userController'); // Import functions from userController
+// userRoutes.js
+// This file contains the routes for user-related API endpoints such as registration, login, and username update.
 
-console.log('registerUser:', registerUser); // Log to check if it's imported correctly
-console.log('loginUser:', loginUser); // Log to check if it's imported correctly
-console.log('updateUsername:', updateUsername); // Log to check if it's imported correctly
+const express = require('express');
+const {
+  registerUser,
+  loginUser,
+  updateUsername,
+} = require('../controllers/userController'); // Import controller functions
 
 const router = express.Router();
 
-// Make sure the imported functions are valid
-router.post('/register', registerUser); // Register route
-router.post('/login', loginUser); // Login route
-router.put('/:id', updateUsername); // Update username route
+// Route to register a new user
+router.post('/register', registerUser);  // POST /api/users/register
 
+// Route to login a user
+router.post('/login', loginUser);  // POST /api/users/login
+
+// Route to update user username by ID
+router.put('/:id', updateUsername); // PUT /api/users/:id
+
+// Export the router to be used in app.js
 module.exports = router;
